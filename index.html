@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bloom Boutique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff0f5, #fce4ec, #ffe4ec);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: glowBg 6s ease-in-out infinite alternate;
+            overflow: hidden;
+        }
+
+        @keyframes glowBg {
+            0% {
+                background: linear-gradient(135deg, #fff0f5, #fce4ec);
+            }
+            100% {
+                background: linear-gradient(135deg, #ffe4ec, #fff0f5);
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #b03060;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .logo {
+    width: 220px;
+    margin-bottom: 15px;
+}
+
+        .tagline {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .desc {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #d63384, #b03060);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .top-decor {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 20px;
+            opacity: 0.6;
+        }
+
+        .bottom-decor {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 20px;
+            opacity: 0.6;
+        }
+
+        /* 🌸 Floating Petals */
+        .petal {
+            position: absolute;
+            top: -50px;
+            font-size: 18px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) translateX(50px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🌸 Floating Petals -->
+<div class="petal" style="left:10%; animation-duration: 8s;">🌸</div>
+<div class="petal" style="left:30%; animation-duration: 10s;">🌷</div>
+<div class="petal" style="left:50%; animation-duration: 7s;">🌸</div>
+<div class="petal" style="left:70%; animation-duration: 9s;">🌷</div>
+<div class="petal" style="left:85%; animation-duration: 11s;">🌸</div>
+
+<!-- Decorations -->
+<div class="top-decor">🌸✨</div>
+<div class="bottom-decor">🌷💖</div>
+
+<!-- Main Content -->
+<div class="container">
+
+    <img src="C:\Users\nihan\OneDrive\Desktop\gift-store\images\Logo.jpeg" alt="Bloom Boutique Logo" class="logo">
+
+    <p class="tagline">Where elegance meets emotion</p>
+
+    <p class="desc">
+        Discover luxurious satin bouquets crafted with delicate detail  
+        to make every moment unforgettable.
+    </p>
+
+    <a href="shop.html">
+        <button class="btn">Explore Collection</button>
+    </a>
+
+</div>
+
+</body>
+</html>

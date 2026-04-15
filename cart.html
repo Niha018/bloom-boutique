@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart - Bloom Boutique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff0f5, #fce4ec);
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            width: 160px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b03060;
+        }
+
+        .cart-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty button {
+            border: none;
+            background: #d63384;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .remove {
+            color: red;
+            cursor: pointer;
+        }
+
+        .total {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: block;
+            margin: 20px auto;
+            background: linear-gradient(to right, #d63384, #b03060);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo.jpeg" class="logo">
+</header>
+
+<h2>🛒 Your Cart</h2>
+
+<div class="cart-container" id="cartItems"></div>
+
+<div class="total" id="total"></div>
+
+<button class="btn" onclick="checkout()">Checkout via WhatsApp</button>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function displayCart() {
+    let container = document.getElementById("cartItems");
+    let totalDiv = document.getElementById("total");
+
+    container.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        let div = document.createElement("div");
+        div.className = "card";
+
+        div.innerHTML = `
+            <div class="row">
+                <strong>${item.name}</strong>
+                <span class="remove" onclick="removeItem(${index})">❌</span>
+            </div>
+
+            <div class="row">
+                <div class="qty">
+                    <button onclick="changeQty(${index}, -1)">-</button>
+                    ${item.qty}
+                    <button onclick="changeQty(${index}, 1)">+</button>
+                </div>
+
+                <span>₹${item.price * item.qty}</span>
+            </div>
+        `;
+
+        container.appendChild(div);
+        total += item.price * item.qty;
+    });
+
+    totalDiv.innerText = "Total: ₹" + total;
+}
+
+function changeQty(index, change) {
+    cart[index].qty = parseInt(cart[index].qty) + change;
+
+    if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Cart is empty 😢");
+        return;
+    }
+
+    let phone = "91XXXXXXXXXX";
+
+    let msg = "Hi, I want to order:\n\n";
+    let total = 0;
+
+    cart.forEach(item => {
+        msg += item.name + " x" + item.qty + "\n";
+        total += item.price * item.qty;
+    });
+
+    msg += "\nTotal: ₹" + total;
+
+    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+
+    window.open(url);
+}
+
+displayCart();
+</script>
+
+</body>
+</html>
