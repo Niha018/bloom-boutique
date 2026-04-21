@@ -132,15 +132,18 @@
         }
 
         .card {
-            background: rgba(255,255,255,0.65);
+            background: rgba(255,255,255,0.6);
             backdrop-filter: blur(15px);
             padding: 15px;
-            border-radius: 18px;
+            border-radius: 15px;
             width: 220px;
             text-align: center;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            overflow: hidden;
+            transition: 0.3s;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
@@ -158,6 +161,13 @@
 
         .card:hover img {
             transform: scale(1.08);
+        }
+
+        .card h3 {
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .price {
