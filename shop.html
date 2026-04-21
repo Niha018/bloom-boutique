@@ -1,320 +1,257 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Shop - Bloom Boutique</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Boutique - Shop</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fff0f5, #fce4ec, #ffe4ec);
-            animation: glowBg 6s ease-in-out infinite alternate;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        @keyframes glowBg {
-            0% { background: linear-gradient(135deg, #fff0f5, #fce4ec); }
-            100% { background: linear-gradient(135deg, #ffe4ec, #fff0f5); }
-        }
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#fff0f6,#fde2ec,#fce4ec);
+    color:#222;
+}
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 25px;
-            background: rgba(255,255,255,0.65);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
 
-        .logo {
-            width: 140px;
-        }
+.logo{
+    width:140px;
+}
 
-        .nav {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-        }
+.nav{
+    display:flex;
+    gap:25px;
+}
 
-        .nav a {
-            text-decoration: none;
-            color: #b03060;
-            font-weight: 500;
-        }
+.nav a{
+    text-decoration:none;
+    color:#b03060;
+    font-weight:500;
+}
 
-        .nav a:hover {
-            text-decoration: underline;
-        }
+.nav a:hover{
+    color:#d63384;
+}
 
-        .cart-btn {
-            background: linear-gradient(to right, #d63384, #b03060);
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 22px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.cart-btn{
+    background:linear-gradient(135deg,#d63384,#b03060);
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:500;
+}
 
-        .cart-btn:hover {
-            transform: scale(1.05);
-        }
+/* SEARCH */
+.search-box{
+    text-align:center;
+    margin:25px;
+}
 
-        .cart-btn.bump {
-            animation: bump 0.3s ease;
-        }
+.search-box input{
+    width:350px;
+    max-width:90%;
+    padding:12px 18px;
+    border-radius:30px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
 
-        @keyframes bump {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
+/* TITLES */
+h2{
+    text-align:center;
+    margin-top:30px;
+    margin-bottom:15px;
+    color:#b03060;
+    font-family:'Playfair Display',serif;
+    font-size:32px;
+}
 
-        .search-box {
-            text-align: center;
-            margin: 22px 20px 10px;
-            position: relative;
-        }
+/* PRODUCTS */
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+    padding:20px;
+}
 
-        .search-box input {
-            width: 60%;
-            max-width: 420px;
-            padding: 12px 16px;
-            border-radius: 25px;
-            border: 1px solid #ddd;
-            outline: none;
-            font-size: 14px;
-            transition: 0.3s;
-        }
+.card{
+    width:260px;
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(12px);
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 12px 25px rgba(0,0,0,0.08);
+    text-align:center;
+    transition:0.3s;
+}
 
-        .search-box input:focus {
-            border-color: #d63384;
-            box-shadow: 0 0 8px rgba(214,51,132,0.25);
-        }
+.card:hover{
+    transform:translateY(-8px);
+}
 
-        #suggestions {
-            max-width: 420px;
-            margin: 6px auto 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: left;
-            overflow: hidden;
-        }
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    border-radius:18px;
+}
 
-        .suggestion-item {
-            padding: 10px 14px;
-            cursor: pointer;
-        }
+.card h3{
+    margin-top:16px;
+    font-size:28px;
+    font-weight:600;
+}
 
-        .suggestion-item:hover {
-            background: #ffe4ec;
-        }
+.price{
+    color:#d63384;
+    font-size:28px;
+    font-weight:700;
+    margin:15px 0;
+}
 
-        h2 {
-            text-align: center;
-            color: #b03060;
-            margin-top: 30px;
-            font-family: 'Playfair Display', serif;
-        }
+.card-controls{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    align-items:center;
+}
 
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
+.card input{
+    width:80px;
+    padding:10px;
+    border-radius:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
 
-        .card {
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(15px);
-            padding: 15px;
-            border-radius: 15px;
-            width: 220px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            transition: 0.3s;
+.btn{
+    padding:10px 18px;
+    border:none;
+    background:linear-gradient(135deg,#d63384,#b03060);
+    color:white;
+    border-radius:25px;
+    cursor:pointer;
+}
 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+/* TOAST */
+#toast{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#d63384;
+    color:white;
+    padding:12px 20px;
+    border-radius:30px;
+    opacity:0;
+    transition:0.4s;
+}
 
-        .card-controls {
-            margin-top: auto;
-        }
+#toast.show{
+    opacity:1;
+}
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
+/* CART DRAWER */
+.drawer{
+    position:fixed;
+    top:0;
+    right:-350px;
+    width:320px;
+    height:100%;
+    background:white;
+    box-shadow:-8px 0 25px rgba(0,0,0,0.1);
+    transition:0.4s;
+    padding:20px;
+    z-index:1000;
+    overflow-y:auto;
+}
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            transition: 0.4s;
-        }
+.drawer.open{
+    right:0;
+}
 
-        .card:hover img {
-            transform: scale(1.08);
-        }
+.drawer-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
 
-        .card h3 {
-            min-height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.drawer-header h3{
+    color:#b03060;
+}
 
-        .price {
-            color: #d63384;
-            font-weight: bold;
-        }
+.drawer-header span{
+    cursor:pointer;
+    font-size:22px;
+}
 
-        input[type="number"] {
-            width: 56px;
-            padding: 6px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            text-align: center;
-            margin: 6px 0;
-        }
+.cart-item{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
 
-        .btn {
-            background: linear-gradient(to right, #d63384, #b03060);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: 0.3s;
-        }
+.qty-btn{
+    padding:3px 8px;
+    border:none;
+    background:#d63384;
+    color:white;
+    border-radius:8px;
+    margin:0 4px;
+    cursor:pointer;
+}
 
-        .btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 5px 15px rgba(214,51,132,0.35);
-        }
+#total{
+    margin-top:15px;
+    font-weight:700;
+    color:#b03060;
+}
 
-        #toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #d63384;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 20px;
-            opacity: 0;
-            transition: 0.5s;
-            z-index: 9999;
-        }
+.checkout{
+    width:100%;
+    margin-top:15px;
+}
 
-        #toast.show {
-            opacity: 1;
-        }
-
-        .drawer {
-            position: fixed;
-            right: -360px;
-            top: 0;
-            width: 320px;
-            height: 100%;
-            background: rgba(255,255,255,0.98);
-            box-shadow: -5px 0 20px rgba(0,0,0,0.12);
-            transition: 0.4s;
-            padding: 18px;
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .drawer.open {
-            right: 0;
-        }
-
-        .drawer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .drawer-header h3 {
-            margin: 0;
-            color: #b03060;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .drawer-header span {
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        #cartItems {
-            margin-top: 16px;
-        }
-
-        .cart-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #f0d7e1;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .qty-btn {
-            padding: 3px 9px;
-            margin: 0 4px;
-            background: #d63384;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .remove-btn {
-            margin-left: 8px;
-            cursor: pointer;
-        }
-
-        #total {
-            font-weight: bold;
-            color: #b03060;
-            margin-top: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                flex-wrap: wrap;
-                gap: 12px;
-                justify-content: center;
-            }
-
-            .nav {
-                order: 3;
-            }
-
-            .search-box input {
-                width: 85%;
-            }
-
-            .drawer {
-                width: 88%;
-                right: -100%;
-            }
-        }
-    </style>
+/* MOBILE */
+@media(max-width:768px){
+.header{
+    flex-direction:column;
+    gap:15px;
+}
+.nav{
+    gap:15px;
+}
+}
+</style>
 </head>
 
 <body>
 
 <header class="header">
-    <img src="images/logo.jpeg" alt="Bloom Boutique Logo" class="logo">
+    <img src="images/logo.jpeg" class="logo">
 
     <div class="nav">
         <a href="index.html">Home</a>
@@ -322,240 +259,208 @@
     </div>
 
     <button class="cart-btn" onclick="toggleCart()">
-        🛒 (<span id="count">0</span>)
+        🛒 Your Cart (<span id="count">0</span>)
     </button>
 </header>
 
 <div class="search-box">
-    <input type="text" id="search" placeholder="Search flowers, bouquets..." onkeyup="showSuggestions(); searchProducts();">
-    <div id="suggestions"></div>
+    <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()">
 </div>
 
 <h2>🌷 Bouquets</h2>
+
 <section class="products">
-    <div class="card">
-        <img src="images/luxury.jpg" alt="Satin Bouquet">
-        <h3>Satin Bouquet</h3>
-        <p class="price">₹899</p>
+
+<div class="card">
+    <img src="images/luxury.jpg">
+    <h3>Satin Bouquet</h3>
+    <p class="price">₹899</p>
+
+    <div class="card-controls">
         <input type="number" value="1" min="1" id="q1">
-        <br>
-        <button class="btn" onclick="addToCart('Satin Bouquet', 899, 'q1')">Add</button>
+        <button class="btn" onclick="addToCart('Satin Bouquet',899,'q1')">Add</button>
     </div>
-    <div class="card">
-        <img src="images/lilybou.jpeg">
+</div>
 
-        <h3>Lily Bouquet</h3>
+<div class="card">
+    <img src="images/lilybou.jpg">
+    <h3>Lily Bouquet</h3>
+    <p class="price">₹999</p>
 
-        <p class="price">₹999</p>
-
-        <div class="card-controls">
-            <input type="number" value="1" min="1" id="q3">
-
-            <button class="btn" onclick="addToCart('Lily Bouquet',999,'q3')">
-                Add
-            </button>
-        </div>
+    <div class="card-controls">
+        <input type="number" value="1" min="1" id="q2">
+        <button class="btn" onclick="addToCart('Lily Bouquet',999,'q2')">Add</button>
     </div>
+</div>
+
 </section>
 
 <h2>🌸 Flowers</h2>
+
 <section class="products">
-    <div class="card">
-        <img src="images/pink.jpg" alt="Pink Satin Flower">
-        <h3>Pink Satin Flower</h3>
-        <p class="price">₹499</p>
-        <input type="number" value="1" min="1" id="q2">
-        <br>
-        <button class="btn" onclick="addToCart('Pink Satin Flower', 499, 'q2')">Add</button>
+
+<div class="card">
+    <img src="images/pink.jpg">
+    <h3>Pink Satin Flower</h3>
+    <p class="price">₹499</p>
+
+    <div class="card-controls">
+        <input type="number" value="1" min="1" id="q3">
+        <button class="btn" onclick="addToCart('Pink Satin Flower',499,'q3')">Add</button>
     </div>
+</div>
+
 </section>
 
 <div id="toast"></div>
 
-<div id="cartDrawer" class="drawer">
-    <div class="drawer-header">
-        <h3>Your Cart</h3>
-        <span onclick="toggleCart()">❌</span>
-    </div>
+<!-- CART DRAWER -->
+<div class="drawer" id="cartDrawer">
 
-    <div id="cartItems"></div>
-    <p id="total"></p>
-    <button class="btn" onclick="checkout()">Checkout</button>
+<div class="drawer-header">
+<h3>Your Cart</h3>
+<span onclick="toggleCart()">✖</span>
+</div>
+
+<div id="cartItems"></div>
+
+<p id="total"></p>
+
+<button class="btn checkout" onclick="checkout()">Checkout</button>
+
 </div>
 
 <script>
-    const products = [
-        "Satin Bouquet",
-        "Pink Satin Flower"
-    ];
+const products = [
+"Satin Bouquet",
+"Lily Bouquet",
+"Pink Satin Flower"
+];
 
-    function getCart() {
-        return JSON.parse(localStorage.getItem("cart")) || [];
-    }
+function getCart(){
+return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
-    function saveCart(cart) {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }
+function saveCart(cart){
+localStorage.setItem("cart",JSON.stringify(cart));
+}
 
-    function updateCount() {
-        const cart = getCart();
-        document.getElementById("count").innerText = cart.length;
-    }
+function updateCount(){
+document.getElementById("count").innerText = getCart().length;
+}
 
-    function showToast(message) {
-        const toast = document.getElementById("toast");
-        toast.innerText = message;
-        toast.classList.add("show");
+function addToCart(name,price,id){
+let qty=parseInt(document.getElementById(id).value);
+let cart=getCart();
 
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 2000);
-    }
+cart.push({
+name:name,
+price:price,
+qty:qty
+});
 
-    function addToCart(name, price, qid) {
-        const qty = parseInt(document.getElementById(qid).value) || 1;
-        const cart = getCart();
+saveCart(cart);
+updateCount();
+showToast(name + " added to cart");
+}
 
-        cart.push({ name, price, qty });
-        saveCart(cart);
-        updateCount();
+function showToast(msg){
+let toast=document.getElementById("toast");
+toast.innerText=msg;
+toast.classList.add("show");
 
-        const cartBtn = document.querySelector(".cart-btn");
-        cartBtn.classList.add("bump");
-        setTimeout(() => {
-            cartBtn.classList.remove("bump");
-        }, 300);
+setTimeout(()=>{
+toast.classList.remove("show");
+},2000);
+}
 
-        showToast(name + " added to cart 🛒");
-    }
+function toggleCart(){
+document.getElementById("cartDrawer").classList.toggle("open");
+displayCart();
+}
 
-    function toggleCart() {
-        document.getElementById("cartDrawer").classList.toggle("open");
-        displayCart();
-    }
+function displayCart(){
+let cart=getCart();
+let items=document.getElementById("cartItems");
+let total=0;
 
-    function displayCart() {
-        const cart = getCart();
-        const container = document.getElementById("cartItems");
-        const totalBox = document.getElementById("total");
+items.innerHTML="";
 
-        container.innerHTML = "";
-        let total = 0;
+cart.forEach((item,index)=>{
+items.innerHTML += `
+<div class="cart-item">
+<b>${item.name}</b><br>
+<button class="qty-btn" onclick="changeQty(${index},-1)">-</button>
+${item.qty}
+<button class="qty-btn" onclick="changeQty(${index},1)">+</button>
+₹${item.price * item.qty}
+<span onclick="removeItem(${index})" style="cursor:pointer;">❌</span>
+</div>
+`;
+total += item.price * item.qty;
+});
 
-        if (cart.length === 0) {
-            container.innerHTML = "<p>Your cart is empty.</p>";
-            totalBox.innerText = "";
-            return;
-        }
+document.getElementById("total").innerText="Total: ₹"+total;
+}
 
-        cart.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.className = "cart-item";
-            div.innerHTML = `
-                <strong>${item.name}</strong><br>
-                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                ${item.qty}
-                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                ₹${item.price * item.qty}
-                <span class="remove-btn" onclick="removeItem(${index})">❌</span>
-            `;
-            container.appendChild(div);
-            total += item.price * item.qty;
-        });
+function changeQty(index,val){
+let cart=getCart();
+cart[index].qty += val;
 
-        totalBox.innerText = "Total: ₹" + total;
-    }
+if(cart[index].qty <=0){
+cart.splice(index,1);
+}
 
-    function changeQty(index, change) {
-        const cart = getCart();
-        cart[index].qty += change;
+saveCart(cart);
+displayCart();
+updateCount();
+}
 
-        if (cart[index].qty <= 0) {
-            cart.splice(index, 1);
-        }
+function removeItem(index){
+let cart=getCart();
+cart.splice(index,1);
+saveCart(cart);
+displayCart();
+updateCount();
+}
 
-        saveCart(cart);
-        updateCount();
-        displayCart();
-    }
+function checkout(){
+let cart=getCart();
 
-    function removeItem(index) {
-        const cart = getCart();
-        cart.splice(index, 1);
-        saveCart(cart);
-        updateCount();
-        displayCart();
-    }
+if(cart.length==0){
+showToast("Cart is empty");
+return;
+}
 
-    function checkout() {
-        const cart = getCart();
+let msg="Hi, I want to order:%0A%0A";
+let total=0;
 
-        if (cart.length === 0) {
-            showToast("Cart is empty 😢");
-            return;
-        }
+cart.forEach(item=>{
+msg += item.name + " x" + item.qty + "%0A";
+total += item.price * item.qty;
+});
 
-        const phone = "91XXXXXXXXXX";
-        let msg = "Hi, I want to order:\n\n";
-        let total = 0;
+msg += "%0ATotal: ₹" + total;
 
-        cart.forEach(item => {
-            msg += item.name + " x" + item.qty + "\n";
-            total += item.price * item.qty;
-        });
+window.open("https://wa.me/91XXXXXXXXXX?text="+msg);
+}
 
-        msg += "\nTotal: ₹" + total;
+function searchProducts(){
+let input=document.getElementById("search").value.toLowerCase();
+let cards=document.querySelectorAll(".card");
 
-        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
-        window.open(url, "_blank");
-    }
+cards.forEach(card=>{
+let text=card.innerText.toLowerCase();
 
-    function searchProducts() {
-        const input = document.getElementById("search").value.toLowerCase();
-        const cards = document.querySelectorAll(".card");
+if(text.includes(input)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+});
+}
 
-        cards.forEach(card => {
-            const text = card.innerText.toLowerCase();
-            if (text.includes(input)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    }
-
-    function showSuggestions() {
-        const input = document.getElementById("search").value.toLowerCase();
-        const box = document.getElementById("suggestions");
-
-        box.innerHTML = "";
-
-        if (input === "") {
-            return;
-        }
-
-        const filtered = products.filter(product =>
-            product.toLowerCase().includes(input)
-        );
-
-        filtered.forEach(item => {
-            const div = document.createElement("div");
-            div.className = "suggestion-item";
-            div.innerText = item;
-
-            div.onclick = function () {
-                document.getElementById("search").value = item;
-                box.innerHTML = "";
-                searchProducts();
-            };
-
-            box.appendChild(div);
-        });
-    }
-
-    window.onload = function () {
-        updateCount();
-    };
+window.onload=updateCount;
 </script>
 
 </body>
