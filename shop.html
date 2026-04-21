@@ -288,8 +288,9 @@ h2{
 
     <div class="card-controls">
         <input type="number" value="1" min="1" id="q1">
-        <button class="btn" onclick="addToCart('Satin Bouquet',899,'q1')">Add</button>
-    </div>
+<button class="btn" onclick="addToCart('Satin Bouquet',899,'q1', this)">
+Add
+</button>    </div>
 </div>
 
 <div class="card">
@@ -302,8 +303,9 @@ h2{
     <div class="card-controls">
         <input type="number" value="1" min="1" id="q2">
 
-        <button class="btn" onclick="addToCart('Lily Bouquet',999,'q2')">
-            Add
+<button class="btn" onclick="addToCart('Lily Bouquet',999,'q1', this)">
+Add
+</button>            Add
         </button>
     </div>
 </div>
@@ -320,7 +322,9 @@ h2{
 
     <div class="card-controls">
         <input type="number" value="1" min="1" id="q3">
-        <button class="btn" onclick="addToCart('Pink Satin Flower',499,'q3')">Add</button>
+<button class="btn" onclick="addToCart('Pink Satin Bouquet',499,'q1', this)">
+Add
+</button>            Add</button>
     </div>
 </div>
 
@@ -363,7 +367,7 @@ function updateCount(){
 document.getElementById("count").innerText = getCart().length;
 }
 
-function addToCart(name,price,id){
+function addToCart(name,price,id,btn){
 let qty=parseInt(document.getElementById(id).value);
 let cart=getCart();
 
@@ -376,6 +380,15 @@ qty:qty
 saveCart(cart);
 updateCount();
 showToast(name + " added to cart");
+
+/* Button animation */
+btn.innerText = "Added ✓";
+btn.style.background = "linear-gradient(135deg,#28a745,#1e7e34)";
+
+setTimeout(()=>{
+btn.innerText = "Add";
+btn.style.background = "linear-gradient(135deg,#d63384,#b03060)";
+},2000);
 }
 
 function showToast(msg){
